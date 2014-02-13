@@ -131,7 +131,8 @@ var Login = {
         } else {
             $("#username").val("");
             //setTimeout(function(){alert('test');$("#username").focus();},10000);
-            $("#username").trigger('click');
+            //$("#username").trigger('click');
+            $("#username").trigger('focus', jQuery.Event("focus"));
             $("#password").val("");
             Application.hideMessage();
           //  $("#username").trigger('click');
@@ -389,8 +390,6 @@ var Requirement = {
         Requirement.populateMedicines();
     },
     searchMedicine: function(e) {
-        $("#quantity").focus();
-        return false;
         var t = true;
         if (typeof e !== "undefined") {
             if ($("#medSearch").val().trim().length < 2) {
