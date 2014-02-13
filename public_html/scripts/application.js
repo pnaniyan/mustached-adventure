@@ -133,7 +133,7 @@ var Login = {
             $("#username").trigger('click');
             $("#password").val("");
             Application.hideMessage();
-            $("#username").focus();
+            $("#username").trigger('click');
         }
     },
     init: function() {
@@ -147,7 +147,7 @@ var Login = {
         } else {
             $("#username").click(function() {
                 $(this).focus();
-            })
+            });
             $("#btnLogin").off("tap");
             $("#btnLogin").on("tap", Login.login);
         }
