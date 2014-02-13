@@ -130,8 +130,8 @@ var Login = {
             return false;
         } else {
             $("#username").val("");
-            setTimeout(function(){alert('test');$("#username").focus();},10000);
-           // $("#username").trigger('click');
+            //setTimeout(function(){alert('test');$("#username").focus();},10000);
+            $("#username").trigger('click');
             $("#password").val("");
             Application.hideMessage();
           //  $("#username").trigger('click');
@@ -146,8 +146,10 @@ var Login = {
             });
             return false;
         } else {
-            $("#username").click(function() {
-                $(this).focus();
+            $("#username").click(function(e) {
+                setTimeout($("#username").focus(), 100);
+                e.preventDefault();
+                return false;
             });
             $("#btnLogin").off("tap");
             $("#btnLogin").on("tap", Login.login);
