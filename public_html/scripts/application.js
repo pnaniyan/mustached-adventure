@@ -130,10 +130,11 @@ var Login = {
             return false;
         } else {
             $("#username").val("");
-            $("#username").trigger('click');
+            setTimeout(function(){$("#username").focus();},1000);
+           // $("#username").trigger('click');
             $("#password").val("");
             Application.hideMessage();
-            $("#username").trigger('click');
+          //  $("#username").trigger('click');
         }
     },
     init: function() {
