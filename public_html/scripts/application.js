@@ -389,6 +389,8 @@ var Requirement = {
         Requirement.populateMedicines();
     },
     searchMedicine: function(e) {
+        $("#quantity").focus();
+        return false;
         var t = true;
         if (typeof e !== "undefined") {
             if ($("#medSearch").val().trim().length < 2) {
