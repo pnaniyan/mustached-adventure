@@ -130,7 +130,7 @@ var Login = {
             return false;
         } else {
             $("#username").val("");
-            setTimeout(function(){$("#username").focus();},1000);
+            setTimeout(function(){alert('test');$("#username").focus();alert('test');},1000);
            // $("#username").trigger('click');
             $("#password").val("");
             Application.hideMessage();
