@@ -115,7 +115,7 @@ var Application = {
     }
 };
 Application.Config = {
-    ajUrl: "http://192.168.0.184/MedicineAPI/",
+    ajUrl: "http://192.168.1.101/MedicineAPI/",
     stayloggedin: false,
     key: "S0xUQk1C"
 };
@@ -130,12 +130,10 @@ var Login = {
             return false;
         } else {
             $("#username").val("");
-            //setTimeout(function(){alert('test');$("#username").focus();},10000);
-            //$("#username").trigger('click');
-            $("#username").trigger('focus', jQuery.Event("focus"));
+            $("#username").trigger('click');
             $("#password").val("");
             Application.hideMessage();
-          //  $("#username").trigger('click');
+            $("#username").focus();
         }
     },
     init: function() {
@@ -147,11 +145,9 @@ var Login = {
             });
             return false;
         } else {
-            $("#username").click(function(e) {
-                setTimeout($("#username").focus(), 100);
-                e.preventDefault();
-                return false;
-            });
+            $("#username").click(function() {
+                $(this).focus();
+            })
             $("#btnLogin").off("tap");
             $("#btnLogin").on("tap", Login.login);
         }
@@ -537,9 +533,13 @@ var Requirement = {
         $("#btnReqBack").button("disable");
         var e = "sumitRequirement";
         Requirement.required.patient.userName = Store.get("user").username;
-        Common.callAjax(e, function(e) {
-            Requirement.requirementSubmited(e);
-        }, "Medicines", Requirement.required);
+		if(Requirement.required.medicines.length > 0) {
+			Common.callAjax(e, function(e) {
+				Requirement.requirementSubmited(e);
+			}, "Medicines", Requirement.required);
+		} else {
+			Application.showMessage("Please add atleast one item", "Error");
+		}
     },
     requirementSubmited: function(e) {
         Application.showMessage("Medicine requirement submited successfully.", "Success", true);
