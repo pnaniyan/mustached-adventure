@@ -449,7 +449,6 @@ var Requirement = {
                 $("#medSearch").val("");
                 $("#quantity").val("");
                 $("#medSearch").focus();
-                softkeyboard.show();
             });
         } else {
             Application.showMessage(e, "Error");
