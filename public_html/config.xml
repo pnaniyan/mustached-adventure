@@ -23,6 +23,7 @@
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="FALSE" />
+    <preference name="android-windowSoftInputMode" value="stateVisible|adjustResize" />
  
     <access origin="http://192.168.0.184/" subdomains="true" />
 
