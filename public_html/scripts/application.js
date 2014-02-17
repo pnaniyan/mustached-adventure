@@ -1,4 +1,3 @@
-var softkeyboard = window.cordova.plugins.SoftKeyBoard;
 var Application = {
     isAuthenticate: function() {
         return Store.isSet("user");
