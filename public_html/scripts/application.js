@@ -144,13 +144,6 @@ var Login = {
             });
             return false;
         } else {
-            $("#username").focus(function() {
-                SoftKeyboard.show(function () {
-                    alert("success");
-                },function () {
-                   alert("Fail");
-                });
-            });
             $("#btnLogin").off("tap");
             $("#btnLogin").on("tap", Login.login);
         }
