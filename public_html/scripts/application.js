@@ -130,10 +130,10 @@ var Login = {
             return false;
         } else {
             $("#username").val("");
-            $("#username").trigger('click');
             $("#password").val("");
             Application.hideMessage();
             $("#username").focus();
+            SoftKeyboard.show();
         }
     },
     init: function() {
