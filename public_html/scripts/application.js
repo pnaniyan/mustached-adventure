@@ -146,6 +146,11 @@ var Login = {
             return false;
         } else {
             $("#username").focus(function() {
+                if(typeof window.SoftKeyboard != "undefined") {
+                    alert("window.softkeyboard");
+                } else if(typeof plugins.SoftKeyboard != "undefined") {
+                    alert("plugin.softkeyboard");
+                }
                 plugins.SoftKeyBoard.show(function () {
                     alert("success");
                 },function () {
