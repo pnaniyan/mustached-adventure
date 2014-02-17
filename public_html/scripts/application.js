@@ -134,7 +134,6 @@ var Login = {
             $("#password").val("");
             Application.hideMessage();
             $("#username").focus();
-            softkeyboard.show();
         }
     },
     init: function() {
@@ -146,9 +145,13 @@ var Login = {
             });
             return false;
         } else {
-            $("#username").click(function() {
-                $(this).focus();
-            })
+            $("#username").focus(function() {
+                plugins.SoftKeyBoard.show(function () {
+                    alert("success");
+                },function () {
+                   alert("Fail");
+                });
+            });
             $("#btnLogin").off("tap");
             $("#btnLogin").on("tap", Login.login);
         }
