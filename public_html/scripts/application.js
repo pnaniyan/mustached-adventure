@@ -1,3 +1,4 @@
+var softkeyboard = window.cordova.plugins.SoftKeyBoard;
 var Application = {
     isAuthenticate: function() {
         return Store.isSet("user");
@@ -115,7 +116,7 @@ var Application = {
     }
 };
 Application.Config = {
-    ajUrl: "http://192.168.1.101/MedicineAPI/",
+    ajUrl: "http://192.168.0.184/MedicineAPI/",
     stayloggedin: false,
     key: "S0xUQk1C"
 };
@@ -133,7 +134,7 @@ var Login = {
             $("#password").val("");
             Application.hideMessage();
             $("#username").focus();
-            SoftKeyboard.show();
+            softkeyboard.show();
         }
     },
     init: function() {
