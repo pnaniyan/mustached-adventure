@@ -36,7 +36,7 @@
     <gap:splash src="images/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="960" />
     <gap:splash src="images/screen-ipad-portrait.png"      gap:platform="ios"     width="768" height="1024" />
     <gap:splash src="images/screen-ipad-landscape.png"     gap:platform="ios"     width="1024" height="768" />
-    
+    <gap:plugin name="de.phonostar.softkeyboard" />
     
    
 </widget>
