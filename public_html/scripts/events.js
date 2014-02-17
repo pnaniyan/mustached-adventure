@@ -5,11 +5,6 @@ $(document).on("pagebeforeshow", "#requirements", Requirement.initView);
 $(document).delegate("#searchPatient", "pageinit", Patients.init).delegate("#login", "pageinit", Login.init).delegate("#patientDetail", "pageinit", PatientDetail.init).delegate("#requirements", "pageinit", Requirement.init);
 $(document).on("pageshow", "#login", function() {
     $("#username").focus();
-    SoftKeyboard.show(function () {
-                    alert("success");
-                },function () {
-                   alert("Fail");
-                });
 });
 $(document).on("pageshow", "#searchPatient", function() {
     $("#patientSearch").select();
