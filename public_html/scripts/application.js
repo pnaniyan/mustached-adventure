@@ -123,7 +123,7 @@ var Login = {
     initView: function() {
         if (Application.isAuthenticate()) {
             $.mobile.changePage("#searchPatient", {
-                transition: "slide",
+                transition: "none",
                 reverse: false,
                 changeHash: true
             });
@@ -132,13 +132,12 @@ var Login = {
             $("#username").val("");
             $("#password").val("");
             Application.hideMessage();
-            $("#username").focus();
         }
     },
     init: function() {
         if (Application.isAuthenticate()) {
             $.mobile.changePage("#searchPatient", {
-                transition: "slide",
+                transition: "none",
                 reverse: false,
                 changeHash: false
             });
@@ -146,6 +145,8 @@ var Login = {
         } else {
             $("#btnLogin").off("tap");
             $("#btnLogin").on("tap", Login.login);
+            $("#username").off("focus", SoftKeyboard.show);
+            $("#username").on('focus', SoftKeyboard.show);
         }
     },
     login: function() {
@@ -165,7 +166,7 @@ var Login = {
         Store.set("user", Application.Config.LoggedInUser);
         Application.refreshData(function() {
             $.mobile.changePage("#searchPatient", {
-                transition: "slide",
+                transition: "none",
                 reverse: false,
                 changeHash: false
             });
@@ -177,7 +178,7 @@ var Patients = {
         var isOk = Application.isAuthenticate();
         if (!isOk) {
             $.mobile.changePage("#login", {
-                transition: "slide",
+                transition: "none",
                 reverse: true,
                 changeHash: false
             });
@@ -186,17 +187,18 @@ var Patients = {
         }
     },
     init: function() {
-        $("#patientSearch").off("keyup");
-        $("#patientList").off("tap", "a");
-        $("#patientSearch").on("keyup", Patients.loadData);
-        $("#patientList").on("tap", "a", Patients.getDetail);
-        Application.bindCommonEvents();
         if (!Application.isAuthenticate()) {
             $.mobile.changePage("#login", {
-                transition: "slide",
+                transition: "none",
                 reverse: true,
                 changeHash: false
             });
+        } else {
+            $("#patientSearch").off("keyup");
+            $("#patientList").off("tap", "a");
+            $("#patientSearch").on("keyup", Patients.loadData);
+            $("#patientList").on("tap", "a", Patients.getDetail);
+            Application.bindCommonEvents();
         }
     },
     loadData: function(e) {
@@ -235,7 +237,7 @@ var Patients = {
         var pat = patList[getObject(patList, "patientId", e)];
         PatientDetail.initPatinet(pat);
         $.mobile.changePage("#patientDetail", {
-            transition: "slide",
+            transition: "none",
             reverse: false,
             changeHash: true
         });
@@ -265,7 +267,7 @@ var PatientDetail = {
             PatientDetail.populateRooms(call);
             return;
         }
-        
+
         call();
     },
     init: function() {
@@ -336,7 +338,7 @@ var PatientDetail = {
         PatientDetail.patient.room = $("#patRoom").val();
         Requirement.required.patient = PatientDetail.patient;
         $.mobile.changePage("#requirements", {
-            transition: "slide",
+            transition: "none",
             reverse: false,
             changeHash: true
         });
@@ -529,13 +531,13 @@ var Requirement = {
         $("#btnReqBack").button("disable");
         var e = "sumitRequirement";
         Requirement.required.patient.userName = Store.get("user").username;
-		if(Requirement.required.medicines.length > 0) {
-			Common.callAjax(e, function(e) {
-				Requirement.requirementSubmited(e);
-			}, "Medicines", Requirement.required);
-		} else {
-			Application.showMessage("Please add atleast one item", "Error");
-		}
+        if (Requirement.required.medicines.length > 0) {
+            Common.callAjax(e, function(e) {
+                Requirement.requirementSubmited(e);
+            }, "Medicines", Requirement.required);
+        } else {
+            Application.showMessage("Please add atleast one item", "Error");
+        }
     },
     requirementSubmited: function(e) {
         Application.showMessage("Medicine requirement submited successfully.", "Success", true);
@@ -570,7 +572,7 @@ var Requirement = {
     },
     addMedicines: function() {
         $.mobile.changePage("#addMedicines", {
-            transition: "slide",
+            transition: "none",
             reverse: false,
             changeHash: true
         });
@@ -581,7 +583,7 @@ var Requirement = {
             setTimeout("Application.hideMessage()", "3000");
         } else {
             $.mobile.changePage("#summary", {
-                transition: "slide",
+                transition: "none",
                 reverse: false,
                 changeHash: true
             });
