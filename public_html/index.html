@@ -275,6 +275,23 @@
                 if(typeof SoftKeyboard === "undefined") {
                     alert("SoftKeyboard not defined");
                 }
+                if(typeof window.cordova !== "undefined") {
+                    if(typeof window.cordova.plugins !== "undefined") {
+                        if(typeof window.cordova.plugins.SoftKeyBoard !== "undefined") {
+                            alert("found keyboard");
+                        } else {
+                            if(typeof window.cordova.plugins.SoftKeyboard !== "undefined") {
+                                alert("found window.cordova.plugins.SoftKeyboard");
+                            } else {
+                                alert("keyboard not found");
+                            }
+                        }
+                    } else {
+                        alert("cordova.plugins not found");
+                    }
+                } else {
+                    alert("cordova not found");
+                }
                 return false;
             })();
         $(document).bind("mobileinit", function() {
