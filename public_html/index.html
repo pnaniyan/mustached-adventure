@@ -275,9 +275,15 @@
                 if(typeof SoftKeyboard === "undefined") {
                     alert("SoftKeyboard not defined");
                 }
+                return false;
             })();
         $(document).bind("mobileinit", function() {
-            SoftKeyboard.hide();
+            console.log("mobileinit");
+            if(typeof SoftKeyboard !== "undefined") {
+                SoftKeyboard.hide();
+                console.log("soft keyboard hidden");
+            }
+            return false;
         });
         </script>
         <script type="text/javascript" src="scripts/dbUtil.js"></script>

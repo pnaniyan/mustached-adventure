@@ -121,6 +121,7 @@ Application.Config = {
 };
 var Login = {
     initView: function() {
+        console.log("initview login");
         if (Application.isAuthenticate()) {
             $.mobile.changePage("#searchPatient", {
                 transition: "none",
@@ -132,9 +133,11 @@ var Login = {
             $("#username").val("");
             $("#password").val("");
             Application.hideMessage();
+            return false;
         }
     },
     init: function() {
+        console.log("init patients");
         if (Application.isAuthenticate()) {
             $.mobile.changePage("#searchPatient", {
                 transition: "none",
@@ -147,6 +150,7 @@ var Login = {
             $("#btnLogin").on("tap", Login.login);
             $("#username").off("focus", SoftKeyboard.show);
             $("#username").on('focus', SoftKeyboard.show);
+            return false;
         }
     },
     login: function() {
@@ -175,6 +179,7 @@ var Login = {
 };
 var Patients = {
     initView: function() {
+        console.log("initview patients");
         var isOk = Application.isAuthenticate();
         if (!isOk) {
             $.mobile.changePage("#login", {
@@ -182,23 +187,28 @@ var Patients = {
                 reverse: true,
                 changeHash: false
             });
+            return false;
         } else {
             Patients.loadData();
+            return false;
         }
     },
     init: function() {
+        console.log("init patients");
         if (!Application.isAuthenticate()) {
             $.mobile.changePage("#login", {
                 transition: "none",
                 reverse: true,
                 changeHash: false
             });
+            return false;
         } else {
             $("#patientSearch").off("keyup");
             $("#patientList").off("tap", "a");
             $("#patientSearch").on("keyup", Patients.loadData);
             $("#patientList").on("tap", "a", Patients.getDetail);
             Application.bindCommonEvents();
+            return false;
         }
     },
     loadData: function(e) {
